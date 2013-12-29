@@ -101,4 +101,14 @@ class GoodsController {
             '*'{ render status: NOT_FOUND }
         }
     }
+	
+	def searchForm() {}
+	def search() {
+		def c = Goods.createCriteria()
+		def goodsList = c.list {
+			if(params.categoryName) {
+				eq('categoryName', params.categoryNames)
+			}
+		}
+	}
 }
