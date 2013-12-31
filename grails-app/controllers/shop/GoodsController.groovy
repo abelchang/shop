@@ -4,6 +4,8 @@ package shop
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import org.hibernate.FetchMode
+
 
 @Transactional(readOnly = true)
 class GoodsController {
@@ -11,7 +13,7 @@ class GoodsController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max = Math.min(max ?: 1, 100)
         respond Goods.list(params), model:[goodsInstanceCount: Goods.count()]
     }
 
@@ -104,11 +106,34 @@ class GoodsController {
 	
 	def searchForm() {}
 	def search() {
-		def c = Goods.createCriteria()
-		def goodsList = c.list {
+		if(!params.max) {
+			params.max = 1
+		}
+		
+		def searchClosure = {
 			if(params.categoryName) {
-				eq('categoryName', params.categoryNames)
+				fetchMode("category", FetchMode.EAGER)
+				createAlias('category','c')
+				eq('c.categoryName', params.categoryName)
+			}
+			if(params.title) {
+				like('title',"%${params.title}%")
+			}
+			if(params.priceLow) {
+				ge('price',new BigDecimal (params.priceLow))
+			}
+			if(params.priceHigh) {
+				le('price',new BigDecimal (params.priceHigh))
+			}
+			if(params.description) {
+				like('description',"%${params.description}%")
 			}
 		}
+		
+		def c = Goods.createCriteria()
+		def goodsList = c.list(params, searchClosure)
+		
+		render(view: 'index', model:[goodsInstanceList: goodsList, goodsInstanceCount:goodsList.totalCount])
 	}
 }
+
