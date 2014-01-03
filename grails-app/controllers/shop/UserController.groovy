@@ -109,10 +109,10 @@ class UserController {
 	def loginCheck = {
 		def user = User.findByEmailAndPassword(params.email, params.password)
 		if(user) {
-			session["user"] = user
+			session.userId = user.id
 			flash.message = 
 			message(code:'login.success', args:[user.userName])
-			log.info("user:${session.user?.userName}")
+			log.info("user:${session.userId}")
 			redirect(action:'index', controller:'Goods')
 		} else {
 			log.info("login failed")
