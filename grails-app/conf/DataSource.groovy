@@ -19,7 +19,7 @@ environments {
 			dialect = org.hibernate.dialect.MySQL5InnoDBDialect
 			username = 'abel'
 			password = '2uiiggii'
-			url = 'jdbc:mysql://localhost/shop'
+			url = 'jdbc:mysql://localhost/shop?useUnicode=true&characterEncoding=UTF-8'
 			dbCreate = 'update'
 		}
 	}
@@ -29,7 +29,7 @@ environments {
 			dialect = org.hibernate.dialect.MySQL5InnoDBDialect
 			username = 'abel'
 			password = '2uiiggii'
-			url = 'jdbc:mysql://localhost/shop'
+			url = 'jdbc:mysql://localhost/shop?useUnicode=true&characterEncoding=UTF-8'
 			dbCreate = 'update'
 		}
 	}
@@ -39,7 +39,7 @@ environments {
 			dialect = org.hibernate.dialect.MySQL5InnoDBDialect
 			username = 'abel'
 			password = '2uiiggii'
-			url = 'jdbc:mysql://localhost/shop'
+			url = 'jdbc:mysql://localhost/shop?useUnicode=true&characterEncoding=UTF-8'
 			dbCreate = 'update'
 			properties {
 				maxActive = -1

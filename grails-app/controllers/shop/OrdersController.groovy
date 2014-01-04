@@ -156,4 +156,16 @@ class OrdersController {
 		}
 		redirect(action:'index' ,params:[status:'old'])
 	}
+	
+	def markAsShipped = {
+		def orders = Orders.get(params.id)
+		log.info("markAsShipped order id: ${orders.id}")
+		if(orders && orders.status == OrderStatus.NEW) {
+			orders.status = OrderStatus.SHIPPED
+			orders.shipDate = new Date()
+			log.info("change order status: ${orders.status}")
+			orders.save()
+		}
+		redirect(action:'index' ,params:[status:'old'])
+	}
 }

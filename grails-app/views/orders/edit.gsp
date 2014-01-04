@@ -1,4 +1,5 @@
 <%@ page import="shop.Orders" %>
+<%@ page import="shop.OrderStatus" %>
 <!DOCTYPE html>
 <html>
 	<head>

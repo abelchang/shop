@@ -40,6 +40,9 @@
 							</g:form></td>
 					</tr>
 				</g:each>
+				<tr><li><g:link class="create" controller="orders" action="create">
+					<g:message code="orders.create" default="Create Order" />
+				</g:link></li></tr>
 			</tbody>
 			<tr>
 				<td colspan="2"><g:message code="cart.totalPrice"
