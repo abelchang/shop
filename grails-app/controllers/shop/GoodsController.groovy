@@ -154,7 +154,7 @@ class GoodsController {
 	def afterInterceptor = [action: this.&addCartToModel, only:['index', 'search']]
 
 	private def addCartToModel(model) {
-		model.cart = orderService.perpareCart(session)
+		model.cart = orderService.prepareCart(session)
 		log.info("addCartToModel:${model.cart}")
 	}
 
@@ -177,7 +177,8 @@ class GoodsController {
 			log.info("delete lineItem:${lineItem.id}")
 			lineItem.delete();
 		}
-		redirect(action:"index")
+
+		redirect(url : params.forwardURI-request.contextPath)
 	}
 
 	def changeItemNumber = {
@@ -190,7 +191,8 @@ class GoodsController {
 				message(code:'lineItem.itemNumber.update.failed', default:'update item number failed')
 			}
 		}
-		redirect(action:"index")
+
+		redirect(url : params.forwardURI-request.contextPath)
 	}
 }
 

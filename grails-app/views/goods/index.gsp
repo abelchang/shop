@@ -20,61 +20,7 @@
 				</g:link></li>
 		</ul>
 	</div>
-	<div id="cart">
-		<g:if test="${cart?.lineItems }">
-			<h1>
-				<g:message code="yourCart" default="Your Cart" />
-			</h1>
-			<table>
-				<thead>
-					<th><g:message code="goods.title" default="Product Title" /></th>
-					<th><g:message code="goods.price" default="Product Price" /></th>
-					<th><g:message code="lineItem.itemNumber"
-							default="Item Number" /></th>
-					<th></th>
-					<th></th>
-				</thead>
-				<tbody>
-					<g:each in="${cart?.lineItems }" var="lineItem">
-						<tr>
-							<td>
-								${lineItem.goods?.title }
-							</td>
-							<td>
-								${lineItem.goods?.price }
-							</td>
-							<td>
-								${lineItem.itemNumber }
-							</td>
-							<td><g:form action="changeItemNumber" method="post">
-									<input type="hidden" name="id" value="${lineItem.id }">
-									<input type="text" size="2" name="itemNumber"
-										value="${lineItem.itemNumber }">
-									<input type="submit"
-										value="${message(code:'cart.changeItemNumber',default:'Modify Number') }">
-								</g:form></td>
-							<td><g:form action="removeFromCart" method="post">
-									<input type="hidden" name="id" value="${lineItem.id }">
-									<input type="submit"
-										value="${message(code:'cart.remove', default:'remove') }"
-										onClick="return confirm('${message(code:'onfirm.removeFromCArt', default:'onfirm remove') }')">
-								</g:form></td>
-						</tr>
-					</g:each>
-				</tbody>
-				<tr>
-					<td colspan="2"><g:message code="cart.totalPrice"
-							default="Total Price" /> ${cart.totalPrice() }</td>
-
-				</tr>
-			</table>
-		</g:if>
-		<g:else>
-			<h2>
-				<g:message code="cart.empty" default="Cart Empty" />
-			</h2>
-		</g:else>
-	</div>
+	<g:render template="/showCart" model="${[cart:cart] }"></g:render>
 	<div id="list-goods" class="content scaffold-list" role="main">
 		<h1>
 			<g:message code="default.list.label" args="[entityName]" />

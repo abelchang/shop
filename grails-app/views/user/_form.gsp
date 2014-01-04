@@ -39,6 +39,6 @@
 		<g:message code="user.address.label" default="Address" />
 		
 	</label>
-	<g:textField name="address" value="${userInstance?.address}"/>
+	<g:textArea name="address" value="${userInstance?.address}"/>
 </div>
 
