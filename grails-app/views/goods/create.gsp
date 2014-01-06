@@ -25,14 +25,17 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:goodsInstance, action:'save']" >
+			<g:form>
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<input type="button"
+					value="upload"
+					onClick="fileUpload(this.form, '${createLink(controller: 'goods', action: 'save')}', '${createLink(uri: '/')}','upload'); return false;">
 				</fieldset>
 			</g:form>
+			<div id="upload"></div>
 		</div>
 	</body>
 </html>

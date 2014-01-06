@@ -1,11 +1,12 @@
 package shop
+import org.bson.types.ObjectId
 
 enum OrderStatus {
 	NEW,SHIPPED,CLOSE
 }
 
 class Orders {
-	
+	ObjectId id
 	Cart cart
 	String receiverName
 	String address

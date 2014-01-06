@@ -1,11 +1,11 @@
 package shop
-
+import org.bson.types.ObjectId
 public enum CartStatus {
 	NEW, ORDERED
 }
 
 class Cart {
-
+	ObjectId id
 	static hasMany = [lineItems: LineItem]
 	static belongsTo = [user: User]
 	CartStatus status = CartStatus.NEW

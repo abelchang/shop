@@ -36,7 +36,7 @@
 				<li class="fieldcontain">
 					<span id="photoUrl-label" class="property-label"><g:message code="goods.photoUrl.label" default="Photo Url" /></span>
 					
-						<span class="property-value" aria-labelledby="photoUrl-label"><img src="${goodsInstance?.photoUrl}" style="width: 400px;"/></span>
+						<span class="property-value" aria-labelledby="photoUrl-label"><img src="${createLink(controller:'File', action:'show', params:[photoUrl:"${goodsInstance?.photoUrl}"])}" style="width: 400px;"/></span>
 					
 				</li>
 				</g:if>

@@ -11,8 +11,8 @@ hibernate {
 	//    cache.region.factory_class = 'org.hibernate.cache.ehcache.EhCacheRegionFactory' // Hibernate 4
 }
 
-// environment specific settings
-environments {
+// environment specific settings Mysql
+/*environments {
 	development {
 		dataSource {
 			driverClassName = "com.mysql.jdbc.Driver"
@@ -54,4 +54,92 @@ environments {
 			}
 		}
 	}
+}*/
+
+// environment specific settings Mongo
+environments {
+	development {
+		grails {
+			mongo {
+				host = "localhost"
+				port = 27017
+				username = "abel"
+				password = "2uiiggii"
+				databaseName = "shop"
+				options {
+					autoConnectRetry = true
+					connectTimeout = 3000
+					connectionsPerHost = 100
+					socketTimeout = 0
+					threadsAllowedToBlockForConnectionMultiplier = 20
+					maxAutoConnectRetryTime=5
+					maxWaitTime=120000
+				}
+			}
+		}
+		dataSource {
+			dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+			url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+		}
+	}
+	test {
+		grails {
+			mongo {
+				host = "localhost"
+				port = 27017
+				username = "abel"
+				password = "2uiiggii"
+				databaseName = "shop"
+				options {
+					autoConnectRetry = true
+					connectTimeout = 3000
+					connectionsPerHost = 100
+					socketTimeout = 0
+					threadsAllowedToBlockForConnectionMultiplier = 20
+					maxAutoConnectRetryTime=5
+					maxWaitTime=120000
+				}
+			}
+		}
+		dataSource {
+			dbCreate = "update"
+			url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+		}
+	}
+	production {
+		grails {
+			mongo {
+				host = "localhost"
+				port = 27017
+				username = "abel"
+				password = "2uiiggii"
+				databaseName = "shop"
+				options {
+					autoConnectRetry = true
+					connectTimeout = 3000
+					connectionsPerHost = 100
+					socketTimeout = 0
+					threadsAllowedToBlockForConnectionMultiplier = 20
+					maxAutoConnectRetryTime=5
+					maxWaitTime=120000
+				}
+			}
+		}
+		dataSource {
+			dbCreate = "update"
+			url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+			pooled = true
+			properties {
+			   maxActive = -1
+			   minEvictableIdleTimeMillis=1800000
+			   timeBetweenEvictionRunsMillis=1800000
+			   numTestsPerEvictionRun=3
+			   testOnBorrow=true
+			   testWhileIdle=true
+			   testOnReturn=true
+			   validationQuery="SELECT 1"
+			}
+		}
+	}
 }
+

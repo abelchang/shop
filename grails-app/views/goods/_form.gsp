@@ -29,7 +29,7 @@
 		<g:message code="goods.photoUrl.label" default="Photo Url" />
 		
 	</label>
-	<g:textField name="photoUrl" value="${goodsInstance?.photoUrl}"/>
+	<input type="file" name="myFile" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: goodsInstance, field: 'price', 'error')} required">

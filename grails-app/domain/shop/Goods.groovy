@@ -1,7 +1,8 @@
 package shop
+import org.bson.types.ObjectId
 
 class Goods {
-	
+	ObjectId id
 	String title
 	String description
 	BigDecimal price

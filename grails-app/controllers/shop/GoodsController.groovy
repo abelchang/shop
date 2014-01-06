@@ -4,14 +4,19 @@ package shop
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
-import org.hibernate.FetchMode
 
+import org.bson.types.ObjectId
 
 @Transactional(readOnly = true)
 class GoodsController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	def orderService
+	def GridFSService
+	static int largeSize = 1600
+	static int mediumSize = 800
+	static String LARGE = "large"
+	static String MEDIUM = "medium"
 
 	def index(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
@@ -27,7 +32,10 @@ class GoodsController {
 	}
 
 	@Transactional
-	def save(Goods goodsInstance) {
+	def save() {
+		log.info("save params:${params}")
+		def goodsInstance = new Goods()
+		goodsInstance.properties = params
 		if (goodsInstance == null) {
 			notFound()
 			return
@@ -37,6 +45,15 @@ class GoodsController {
 			respond goodsInstance.errors, view:'create'
 			return
 		}
+		
+		def file = params.myFile
+		log.info("file:" + file.getOriginalFilename())
+		ObjectId idU= new ObjectId()
+		String extension = file.getOriginalFilename().split('\\.')[-1]
+		String gridFSFilename= idU.toString() + '.' + extension
+		//save medium photo
+		goodsInstance.photoUrl = GridFSService.saveResizePhoto(file, MEDIUM+gridFSFilename, mediumSize)
+		log.info("goodsInstance.photoUrl:"+goodsInstance.photoUrl)
 
 		goodsInstance.save flush:true
 
@@ -127,9 +144,7 @@ class GoodsController {
 
 		def searchClosure = {
 			if(params.categoryName) {
-				fetchMode("category", FetchMode.EAGER)
-				createAlias('category','c')
-				eq('c.categoryName', params.categoryName)
+				eq('categoryName', params.categoryName)
 			}
 			if(params.title) {
 				like('title',"%${params.title}%")

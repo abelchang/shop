@@ -1,7 +1,8 @@
 package shop
+import org.bson.types.ObjectId
 
 class Category {
-	
+	ObjectId id
 	String categoryName
 	static hasMany = [goods: Goods]
 

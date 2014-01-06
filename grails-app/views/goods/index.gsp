@@ -36,7 +36,7 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
 						<td><img alt=""
-							src="${fieldValue(bean: goodsInstance, field: "photoUrl")}"
+							src="${createLink(controller:'File', action:'show', params:[photoUrl:"${goodsInstance?.photoUrl}"])}"
 							style="width: 200px" /></td>
 
 						<td style="width: 500px"><g:link action="show"

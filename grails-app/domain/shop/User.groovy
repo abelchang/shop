@@ -1,7 +1,8 @@
 package shop
+import org.bson.types.ObjectId
 
 class User {
-
+	ObjectId id
 	String userName
 	String password
 	//transient password2
