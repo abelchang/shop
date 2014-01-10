@@ -1,7 +1,5 @@
 package shop
 
-
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -13,12 +11,18 @@ class GoodsController {
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	def orderService
 	def GridFSService
+	def springSecurityService
 	static int largeSize = 1600
 	static int mediumSize = 800
 	static String LARGE = "large"
 	static String MEDIUM = "medium"
 
 	def index(Integer max) {
+		log.info("show session:${session}")
+		if(springSecurityService.currentUser) {
+			session.userId = springSecurityService.currentUser.id
+			log.info("currentUser: ${session.userId}")
+		}
 		params.max = Math.min(max ?: 10, 100)
 		respond Goods.list(params), model:[goodsInstanceCount: Goods.count()]
 	}
@@ -174,7 +178,7 @@ class GoodsController {
 	}
 
 	def addToCart = {
-		if(session.userId && params.goodsId) {
+		if(params.goodsId) {
 			log.info("add to cart in controller!")
 			orderService.addToCart(session, params.goodsId)
 		} else {
@@ -182,6 +186,16 @@ class GoodsController {
 		}
 		redirect(action:"index")
 	}
+	
+//	def addToCart = {
+//		if(session.userId && params.goodsId) {
+//			log.info("add to cart in controller!")
+//			orderService.addToCart(session, params.goodsId)
+//		} else {
+//			log.info("can not add to cart!")
+//		}
+//		redirect(action:"index")
+//	}
 
 	def removeFromCart = {
 		def lineItem = LineItem.get(params.id)

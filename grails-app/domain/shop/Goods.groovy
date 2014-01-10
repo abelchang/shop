@@ -8,9 +8,18 @@ class Goods {
 	BigDecimal price
 	String photoUrl
 	Category category
+	
+	Date dateCreated
+	Date lastUpdated
 
     static constraints = {
     }
+	
+	static mapping = {
+		autoTimeStamp true
+		cache true
+	}
+	
 	String toString() {
 		return title
 	}

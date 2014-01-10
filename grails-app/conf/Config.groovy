@@ -119,3 +119,11 @@ log4j = {
 			'grails.app.domain'
 			
 }
+
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'shop.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'shop.UserRole'
+grails.plugins.springsecurity.authority.className = 'shop.Role'
+grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/goods/index'
+grails.plugins.springsecurity.logout.postOnly = false

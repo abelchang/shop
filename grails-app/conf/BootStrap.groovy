@@ -1,24 +1,18 @@
 import shop.Category
 import shop.Goods
+import shop.User
+import shop.Role
+import shop.UserRole
 
 
 class BootStrap {
 
 	def init = { servletContext ->
-		/*def category = new Category(categoryName:'book')
-		if(category.save()) {
-			log.info("new category save")
-			def allgoods = [
-				new Goods(title:'web design',description:'how to buld a beautiful web site',price:'100.0',photoUrl:'tmp'),
-				new Goods(title:'web program',description:'how to write beautiful web process',price:'120.5',photoUrl:'tmp')
-			]
-			allgoods*.category = category
-			if(!allgoods*.save()) {
-				allgoods*.errors.allErrors.each { log.info(it) }
-				return
-			}
-			log.info('all product save')
-		}*/
+		User user = new User(username:"abel",password:"2uiiggii",email:"ccabel42@gmail.com", phone:"0918624807", address:"台北市中山北路七段一百九巷一樓",enabled:true,passwordExpired:false, accountExpired:false,accountLocked:false).save()
+		Role role = new Role(authority:'ROLE_ADMIN').save()
+		new UserRole(user:user, role:role).save()
+		new Role(authority:'ROLE_CUSTOMER').save()
+		new Role(authority:'ROLE_MANAGER').save()
 	}
 	def destroy = {
 	}

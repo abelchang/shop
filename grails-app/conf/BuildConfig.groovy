@@ -72,6 +72,7 @@ grails.project.dependency.resolution = {
 
 		//abel
 		runtime ":mongodb:1.3.3"
+		runtime ":spring-security-core:1.2.7.3"
 		
 	}
 }

@@ -1,25 +1,62 @@
 package shop
+
+import java.util.Date;
+
 import org.bson.types.ObjectId
 
 class User {
+
+	transient springSecurityService
 	ObjectId id
-	String userName
+	String username
 	String password
-	//transient password2
 	String email
 	String phone
 	String address
+	
+	Date dateCreated
+	Date lastUpdated
+	
+	boolean enabled
+	boolean accountExpired
+	boolean accountLocked
+	boolean passwordExpired
 
 	static constraints = {
-		userName(size:2..10, blank:false)
-		password(size:6..12, blank:false)
+		username blank: false, unique: true
+		password size:6..12, blank: false
 		email(email:true, unique:true, blank:false)
 		phone(blank:true, nullable: true)
 		address(blank:true,nullable:true)
-		/*password2(validator: {val, obj ->
-			if(val != obj.password)
-				return ['different.password']
-		})*/
+	}
+
+	static mapping = {
+		password column: '`password`'
+		autoTimeStamp true
+	}
+
+	Set<Role> getAuthorities() {
+		UserRole.findAllByUser(this).collect { it.role } as Set
+	}
+
+	def beforeInsert() {
+		encodePassword()
+	}
+
+	def beforeUpdate() {
+		if (isDirty('password')) {
+			encodePassword()
+		}
+	}
+
+	protected void encodePassword() {
+		password = springSecurityService.encodePassword(password)
 	}
 	
+	String toString() {
+		return "${username}"
+	}
 }
+
+
+

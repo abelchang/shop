@@ -1,0 +1,59 @@
+body {
+	height: 100%;
+}
+
+#status {
+	background-color: #eee;
+	border: .2em solid #fff;
+	margin: 1%;
+	padding: 1%;
+
+	-moz-box-shadow: 0px 0px 1.25em #ccc;
+	-webkit-box-shadow: 0px 0px 1.25em #ccc;
+	box-shadow: 0px 0px 1.25em #ccc;
+	-moz-border-radius: 0.6em;
+	-webkit-border-radius: 0.6em;
+	border-radius: 0.6em;
+	position: fixed;
+	overflow: hidden;
+}
+
+.ie6 #status {
+	display: inline;
+	/* float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
+}
+
+#page-body {
+	margin: 2em 1em 1.25em 1em;
+}
+
+@media screen and (max-width: 480px) {
+	#status {
+		display: none;
+	}
+	#page-body {
+		margin: 0 1em 1em;
+	}
+	#page-body h1 {
+		margin-top: 0;
+	}
+}
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.pull-center {float;none;
+	margin: 0 auto;
+	display: inline-block;
+	*display: inline; /*ie7 fix*/
+	*zoom: 1; /*hasLayout ie7 trigger*/
+	vertical-align: top;
+}

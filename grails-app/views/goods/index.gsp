@@ -9,9 +9,7 @@
 <title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>
 <body>
-	<a href="#list-goods" class="skip" tabindex="-1"><g:message
-			code="default.link.skip.label" default="Skip to content&hellip;" /></a>
-	<div class="nav" role="navigation">
+	<nav data-role="navbar" data-grid="a">
 		<ul>
 			<li><a class="home" href="${createLink(uri: '/')}"><g:message
 						code="default.home.label" /></a></li>
@@ -19,18 +17,18 @@
 					<g:message code="default.new.label" args="[entityName]" />
 				</g:link></li>
 		</ul>
-	</div>
+	</nav>
 	<g:render template="/showCart" model="${[cart:cart] }"></g:render>
 	<div id="list-goods" class="content scaffold-list" role="main">
 		<h1>
-			<g:message code="default.list.label" args="[entityName]" />
+			<g:message code="goods.list.label" default="Product List" />
 		</h1>
 		<g:if test="${flash.message}">
 			<div class="message" role="status">
 				${flash.message}
 			</div>
 		</g:if>
-		<table>
+		<table >
 			<tbody>
 				<g:each in="${goodsInstanceList}" status="i" var="goodsInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">

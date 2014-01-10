@@ -10,9 +10,7 @@
 <title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>
 <body>
-	<a href="#list-orders" class="skip" tabindex="-1"><g:message
-			code="default.link.skip.label" default="Skip to content&hellip;" /></a>
-	<div class="nav" role="navigation">
+	<nav data-role="navbar" data-grid="c" >
 		<ul>
 			<li><a class="home" href="${createLink(uri: '/')}"><g:message
 						code="default.home.label" /></a></li>
@@ -27,7 +25,7 @@
 					<g:message code="orders.status.all" default="All order" />
 				</g:link></li>
 		</ul>
-	</div>
+	</nav>
 	<div id="list-orders" class="content scaffold-list" role="main">
 		<h1>
 			<g:message code="default.list.label" args="[entityName]" />
@@ -37,7 +35,7 @@
 				${flash.message}
 			</div>
 		</g:if>
-		<table>
+		<table data-role="table" id="table-custom-2" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-popup-theme="a">
 			<thead>
 				<tr>
 					<th><g:message code="orders.goods" default="Product Name" /></th>

@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.*
 @Transactional
 class OrderService {
 
-    def prepareCart(session) {
+	def prepareCart(session) {
 		def cart = null
 		if(session.cartId) {
 			cart = Cart.get(session.cartId)
@@ -15,29 +15,33 @@ class OrderService {
 				return cart
 			}
 		}
-		
+
 		if(session.userId) {
 			def user = User.get(session.userId)
 			log.info("session user:${user}")
 			cart = Cart.findByUserAndStatus(user, CartStatus.NEW)
-			
+
 			if(cart) {
 				session.cartId = cart.id
 				log.info("session.cartId:${session.cartId}")
-				return cart
 			} else {
 				cart = new Cart(user:user, status:CartStatus.NEW)
 				if(cart.save()) {
 					session.cartId = cart.id
 					log.info("new session.cartId:${session.cartId}")
-					return cart
 				}
 			}
+		} else {
+			cart = new Cart(status:CartStatus.NEW)
+			if(cart.save()) {
+				session.cartId = cart.id
+				log.info("new session.cartId:${session.cartId}")
+			}
 		}
-		log.info("return null cart!")
+
 		return cart
-    }
-	
+	}
+
 	def addToCart(session, goodsId) {
 		def cart = prepareCart(session)
 		if(cart) {
@@ -59,20 +63,20 @@ class OrderService {
 		}
 		log.info("no cart!!")
 	}
-	
+
 	@Transactional(propagation=Propagation.REQUIRES_NEW )
 	def saveOrder(session, orders) {
 		def cart = prepareCart(session)
 		if(cart) {
 			orders.cart = cart
-			orders.user = cart.user
+			orders.user = cart?.user
 			orders.orderDate = new Date()
 			orders.price = cart.totalPrice()
 			orders.status = OrderStatus.NEW
 			orders.properties.each {
 				log.info("orders:${it}")
 			}
-			
+
 			if(!orders.hasErrors() && orders.save()) {
 				cart.status = CartStatus.ORDERED
 				if(cart.save()) {
