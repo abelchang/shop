@@ -1,6 +1,6 @@
 <div id="status" role="complementary"  >
-<div id="grailsLogo" role="banner"><a href="#"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a>
-		</div>
+<div id="grailsLogo" role="banner"><a href="#"><img src="${resource(dir: 'images/gg', file: 'Slogo6.png')}" alt="" style="width:150px;"/></a>
+</div>
 <sec:ifLoggedIn>Hi <sec:username/></sec:ifLoggedIn>
 <ul data-role="listview" data-inset="true">
 <li data-icon="false">

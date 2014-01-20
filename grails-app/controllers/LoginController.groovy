@@ -11,6 +11,7 @@ import org.springframework.security.authentication.LockedException
 import org.springframework.security.core.context.SecurityContextHolder as SCH
 import org.springframework.security.web.WebAttributes
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.codehaus.groovy.grails.plugins.web.taglib.ApplicationTagLib
 
 class LoginController {
 
@@ -42,11 +43,15 @@ class LoginController {
 	def auth = {
 
 		def config = SpringSecurityUtils.securityConfig
-
+		
 		if (springSecurityService.isLoggedIn()) {
 			redirect uri: config.successHandler.defaultTargetUrl
 			return
 		}
+
+		//def test = new ApplicationTagLib().createLink([controller: 'goods', action: 'index'])
+		//session.testUrl = test
+
 
 		String view = 'auth'
 		String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
@@ -58,6 +63,7 @@ class LoginController {
 	 * The redirect action for Ajax requests.
 	 */
 	def authAjax = {
+		log.info("authAjax!")
 		response.setHeader 'Location', SpringSecurityUtils.securityConfig.auth.ajaxLoginFormUrl
 		response.sendError HttpServletResponse.SC_UNAUTHORIZED
 	}
@@ -77,6 +83,7 @@ class LoginController {
 	 * Login page for users with a remember-me cookie but accessing a IS_AUTHENTICATED_FULLY page.
 	 */
 	def full = {
+		log.info("full!!")
 		def config = SpringSecurityUtils.securityConfig
 		render view: 'auth', params: params,
 			model: [hasCookie: authenticationTrustResolver.isRememberMe(SCH.context?.authentication),
@@ -122,7 +129,16 @@ class LoginController {
 	 * The Ajax success redirect url.
 	 */
 	def ajaxSuccess = {
-		render([success: true, username: springSecurityService.authentication.name] as JSON)
+		log.info("ajaxSucess")
+		
+//		render """<script language="javascript" type="text/javascript">
+//                alert('Success);
+//				self.location= "/";
+//                </script> """
+		
+		redirect(controller:'goods', action:'index')
+
+		//render([success: true, username: springSecurityService.authentication.name] as JSON)
 	}
 
 	/**

@@ -126,4 +126,13 @@ grails.plugins.springsecurity.userLookup.userDomainClassName = 'shop.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'shop.UserRole'
 grails.plugins.springsecurity.authority.className = 'shop.Role'
 grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/goods/index'
-grails.plugins.springsecurity.logout.postOnly = false
+grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugins.springsecurity.interceptUrlMap = [
+	'/goods/create':   ['IS_AUTHENTICATED_FULLY'],
+	'/js/**':        ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/css/**':       ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/images/**':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/*':            ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/login/**':     ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/logout/**':    ['IS_AUTHENTICATED_ANONYMOUSLY']
+ ]

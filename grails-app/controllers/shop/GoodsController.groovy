@@ -223,6 +223,12 @@ class GoodsController {
 
 		redirect(url : params.forwardURI-request.contextPath)
 	}
+	
+	def chinkenP = {render (template: 'chickenP')}
+	def aboutP = {render (template: 'aboutP')}
+	def careP = {render (template: 'careP')}
+	def home = {render (template: 'home')}
+	def info = {render (template: 'info')}
 }
 
 

@@ -8,6 +8,7 @@ class UrlMappings {
         }
 
         "/"(view:"/index")
+		"/2"(view:"/index2")
         "500"(view:'/error')
 		"/j_spring_security_check"(view:"/goods/index")
 	}

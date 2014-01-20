@@ -1,13 +1,65 @@
-body {
-	height: 100%;
+/* #homePage {
+	font-family: "·L³n¥¿¶ÂÅé","Microsoft JhengHei",'Oswald', sans-serif;
+	color: #ecf0f1 !important;
+	background: #1abc9c !important;
+}
+ */
+a {
+	text-decoration: none;
+	color: #941919 !important;
+}
+
+#headerLogoPng {
+	width: 120px;
+}
+
+#in-content {
+	max-width: 1000px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+#content {
+	padding: 20px;
+	border: .2em solid #fff;
+	background: #f5f1f0;
+	border-radius: 25px;
+	text-align: center;
+}
+
+#content h1 {
+	text-align: center;
+}
+
+#content p>big {
+	font-size: 1.75em;
+}
+
+#navlist {
+	float: right;
+	/* position: relative; */
+	margin-heigh: 70px;
+	hetght: 700;
+	width: 200px;
+}
+
+#navlistContent {
+	background-color: #eee;
+	border: .2em solid #fff;
+	margin: 70px 5px 10px 5px; padding : 5px;
+	-moz-border-radius: 0.6em;
+	-webkit-border-radius: 0.6em;
+	border-radius: 0.6em;
+	position: absolute;
+	overflow: hidden;
+	padding: 5px;
 }
 
 #status {
 	background-color: #eee;
 	border: .2em solid #fff;
-	margin: 1%;
-	padding: 1%;
-
+	margin: 5px;
+	padding: 5px;
 	-moz-box-shadow: 0px 0px 1.25em #ccc;
 	-webkit-box-shadow: 0px 0px 1.25em #ccc;
 	box-shadow: 0px 0px 1.25em #ccc;
@@ -18,26 +70,84 @@ body {
 	overflow: hidden;
 }
 
+#buyit {
+	width: 125px;
+	height: 125px;
+	color: #F7F6F9;
+	/* background: #F86387; */
+	border-radius: 100%;
+	margin: 1em auto;
+	margin-top: 40px;
+	/*transition: .25s;*/
+	/* width: 30%;
+	margin: 100px auto; */
+	/* color: #ecf0f1;
+	background-color: #E74C3C; */
+	/* border: .2em solid #eee; */
+	-moz-box-shadow: 0px 0px 1.25em #ccc;
+	-webkit-box-shadow: 0px 0px 1.25em #ccc;
+	box-shadow: 0px 0px 1.25em #ccc;
+	-moz-box-shadow: 0px 0px 1.25em #ccc;
+	/* -moz-border-radius: 0.6em;
+	-webkit-border-radius: 0.6em;
+	border-radius: 0.6em; */
+}
+
+#buyit span {
+	line-height: 115px;
+	font-size: 3em;
+}
+
+#narbarList {
+	display: block;
+}
+
+#navbarCollapsible {
+	display: none;
+}
+
 .ie6 #status {
 	display: inline;
 	/* float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
 }
 
 #page-body {
-	margin: 2em 1em 1.25em 1em;
+	text-algin: center;
 }
 
-@media screen and (max-width: 480px) {
-	#status {
-		display: none;
-	}
-	#page-body {
-		margin: 0 1em 1em;
-	}
-	#page-body h1 {
-		margin-top: 0;
-	}
+#homeSB {
+	display: inline-block;
+	width: 8%;
+	margin: 2%;
 }
+
+.popupDG {
+	max-width: 900px;
+	width: 80%;
+	margin: 20% auto;
+	padding: 30px;
+	/* overflow: auto; */
+	line-height: 2em;
+}
+
+.popupDG p {
+	color: #666666;
+	margin: 10px;
+	line-height: 2em;
+}
+
+.popupDG li,a,td {
+	color: #666666;
+}
+
+.popupDG big {
+	color: #941919;
+}
+
+hr {
+	width: 100%;
+}
+
 .text-left {
 	text-align: left;
 }
@@ -50,10 +160,119 @@ body {
 	text-align: center;
 }
 
-.pull-center {float;none;
+.pull-center {
+	float: none;
 	margin: 0 auto;
 	display: inline-block;
 	*display: inline; /*ie7 fix*/
 	*zoom: 1; /*hasLayout ie7 trigger*/
 	vertical-align: top;
+}
+
+.nav-panel {
+	background: #F86387;
+}
+
+.nav-panel  li {
+	background: #FEF1E1;
+}
+
+.pull_bottom {
+	vertical-algin: bottom;
+}
+
+#photoButton {
+	
+}
+
+#homePhoto {
+	width: 100%;
+}
+
+.smailHB {
+	width: 90%;
+}
+
+.smailHBDiv {
+	
+}
+
+.bigHB {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.bigHBDiv {
+	
+}
+
+#homeButton {
+	transition: width 2s, height 2s;
+	-webkit-transition: width 2s, height 2s, -webkit-transform 2s;
+	/* Safari and Chrome */
+}
+
+#homeButton:hover {
+	transform: rotate(360deg);
+	-webkit-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+}
+
+#blockButton {
+	text-align: center;
+}
+
+#homeBD {
+	margin-top: 65px;
+}
+
+@media all and (max-width: 600px) {
+	#headerLogo {
+		display: none;
+	}
+	#headerLogoPng {
+		width: 55%;
+	}
+	#in-content {
+		width: 90%;
+		margin: 0 auto;
+	}
+	#status {
+		display: none;
+	}
+	#page-body {
+		margin: 0 1em 1em;
+	}
+	#page-body h1 {
+		margin-top: 0;
+	}
+	.main {
+		padding: 100px auto;
+		text-align: center;
+		line-height: 170%;
+	}
+	.main p {
+		line-height: 150%;
+	}
+	#buyit {
+		width: 50px;
+		height: 50px;
+		-moz-box-shadow: 0px 0px 0.75em #ccc;
+		-webkit-box-shadow: 0px 0px 0.75em #ccc;
+		box-shadow: 0px 0px 0.75em #ccc;
+		-moz-box-shadow: 0px 0px 0.75em #ccc;
+	}
+	#buyit span {
+		line-height: 45px;
+		font-size: 1.5em;
+	}
+	#narbarList {
+		display: none;
+	}
+	#navbarCollapsible {
+		display: block;
+	}
+	#homeBD {
+		margin-top: 40px;
+	}
 }

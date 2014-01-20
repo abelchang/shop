@@ -35,7 +35,7 @@
 
 						<td><img alt=""
 							src="${createLink(controller:'File', action:'show', params:[photoUrl:"${goodsInstance?.photoUrl}"])}"
-							style="width: 200px" /></td>
+							style="width: 200px" loop=infinite /></td>
 
 						<td style="width: 500px"><g:link action="show"
 								id="${goodsInstance.id}">

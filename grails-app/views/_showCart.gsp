@@ -54,10 +54,10 @@
 		</table>
 		
 	</g:if>
-	<%--<g:else>
+	<g:else>
 		<h2>
-			<g:message code="cart.empty" default="Cart Empty" />
+			<g:message code="cart.empty" default="尚未選購任何產品" />
 		</h2>
 	</g:else>
---%></div>
+</div>
 </center>
